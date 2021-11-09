@@ -278,32 +278,56 @@ body {
   text-align: center;
 }
 
-.contact-card-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  height: auto;
-}
-
 .card {
+  display: none;
+  position: relative;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background-color: #5f21c2;
   color: aliceblue;
-  width: 300px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 2;
+  border-radius: 10px 50px;
+  transition: 0.5s;
+  margin-bottom: 10px;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/*  width: 50%;
+  height: 50vh;
+  background-color: #5f21c2;
+  color: aliceblue;
   padding: 20px;
   margin: 40px;
   text-align: center;
   border-radius: 10px 50px;
   transition: 0.5s;
-}
+*/
 
+/*
 .card:hover {
   transform: scale(1.05);
 }
-
+*/
 .profile-img-1 {
-  width: 200px;
+  position: relative;
+  top: 8px;
+  left: 8px;
+  width: 150px;
+  height: 150px;
   padding: 10px;
   border: 3px solid white;
   border-radius: 50%;
@@ -314,15 +338,13 @@ body {
   font-size: 18px;
 }
 
-.contact-card-social-icon i {
-  margin: 0 5px;
-}
-
 .card-button {
   border: none;
+  position: relative;
   outline: 0;
   display: inline-block;
   padding: 8px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   color: #5e21c2;
   background-color: white;
@@ -330,18 +352,9 @@ body {
   cursor: pointer;
   width: 70%;
   font-size: 18px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   border-radius: 5px 20px;
-}
-
-.contact-card-social-icon a {
-  text-decoration: none;
-  font-size: 22px;
-  color: rgb(255, 255, 255);
-  transition: 0.5s;
-}
-
-.contact-card-social-icon a:hover {
-  color: aqua;
 }
 
 #card-button-1:hover {
@@ -480,7 +493,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   display: none;
@@ -490,17 +503,19 @@ footer {
 
 .service-modal {
   width: 50%;
-  height: 50vh;
-  background-color: white;
-  border-radius: 10px;
+  height: 50%;
+  background-color: #5f21c2;
+  color: aliceblue;
+  padding: 20px;
+  margin: 40px;
+  text-align: center;
+  border-radius: 10px 50px;
+  transition: 0.5s;
 }
 
 .modal-header {
   width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom: 1px solid #e1e1e1;
-  padding: 10px;
+  padding: bottom 5px;
   display: flex;
   justify-content: flex-end;
 }
@@ -509,69 +524,132 @@ footer {
   cursor: pointer;
 }
 
-#service-modal-content {
-  padding: 10px;
-}
-
-#service-modal-content img {
+/*modal picutes*/
+.picture-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 20vh;
-  object-fit: cover;
+  margin: 10px;
 }
 
-.thumbnail {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  cursor: pointer;
-}
-
-#thumbnails-wrapper {
+.miniBilder {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  overflow: auto;
-  background-color: #acacac;
+  padding: 20px 20px;
 }
 
-#main-image {
-  width: 100%;
-  height: 60vh;
-  object-fit: cover;
-  border-bottom: 1px solid black;
+.header-over-pictures {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.main-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-}
-
-#prev-btn,
-#next-btn {
-  position: absolute;
-  top: 40%;
-  background-color: white;
-  padding: 10px;
+/* Style the Image Used to Trigger the Modal */
+.myImg {
+  border-radius: 5px;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.3s;
+  margin: 2px;
 }
 
-#prev-btn:hover,
-#next-btn:hover {
-  background-color: red;
-  color: white;
+.myImgMini {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 2px;
+  border: none;
 }
 
-#prev-btn {
+.myImg:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
   left: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 }
 
-#next-btn {
-  right: 0;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 2%;
+  box-shadow: rgb(38, 57, 77) 0px 10px 25px -10px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content,
+#caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+/* The settings for the small pictures */
+.modal-section {
+  border: 2px solid rgba(82, 184, 209, 0.658);
+  transition: 0.2s;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transform: scale(1.2);
+  margin: 10px 10px;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
 }
